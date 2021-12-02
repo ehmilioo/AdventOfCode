@@ -31,6 +31,7 @@ for(command of lines){
   let amount = parseInt(command.split(' ')[1]);
   switch(direction){
     case 'down': aim+= +amount; break
+    case 'up': aim-=amount; +amount; break
     case 'forward':
       x+= +amount;
       y+= +amount*aim;
