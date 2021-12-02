@@ -1,4 +1,5 @@
-let t0 = Date.now();
+console.time("Program");
+console.time("P1");
 const fs = require('fs');
 const read = fs.readFileSync("day2.txt");
 let lines = read.toString().split("\n");
@@ -13,14 +14,11 @@ for(command of lines){
     case 'down': y+=amount; break
     case 'up': y-=amount; break
   }
-    
 }
 
-//Answer: 1989014
-console.log(`First Answer: ${x*y}`);
-console.log(`P1 Time: ${(Date.now() - t0)/1000}s`)
-t1 = Date.now();
-// Between 0.009 - 0.01s
+console.log(`P1 Answer: ${x*y}`);
+console.timeEnd('P1');
+console.time('P2');
 
 x = 0;
 y = 0;
@@ -35,11 +33,10 @@ for(command of lines){
     case 'forward':
       x+= +amount;
       y+= +amount*aim;
-      break;
+      break
   }
 }
 
-//Answer: 2006917119
-console.log(`Second Answer: ${x*y}`);
-console.log(`P2 Time: ${(Date.now() - t1)/1000}s`)
-// Between 0 - 0.001s
+console.log(`P2 Answer: ${x*y}`);
+console.timeEnd('P2');
+console.timeEnd('Program');
