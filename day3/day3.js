@@ -36,3 +36,39 @@ let epsDecimal = parseInt(epsilon, 2);
 console.log(`P1 Answer: ${gamDecimal * epsDecimal}`)
 console.timeEnd("P1");
 console.time("P2");
+
+let oxygen;
+let co2;
+getValues(0, lines, 'o2')
+getValues(0, lines, 'co2')
+
+function getValues(index, array, criteria){
+    let ones = 0;
+    array.forEach(el => {
+        el[index] == '1' ? ones++ : undefined
+    });
+
+    let newArr
+    if(ones>=array.length/2){
+        if(criteria == 'o2'){
+            newArr = array.filter(el=>el[index]=="1")
+        }else{
+            newArr = array.filter(el=>el[index]=="0")
+        }
+    }else{
+        if(criteria == 'o2'){
+            newArr = array.filter(el=>el[index]=="0")
+        }else{
+            newArr = array.filter(el=>el[index]=="1")
+        }
+    }
+    if(newArr.length==1){
+        criteria=='o2' ? oxygen = parseInt(newArr[0],2) : co2 = parseInt(newArr[0],2)
+    }else{
+        getValues(index+1,newArr,criteria)  
+    }
+}
+
+console.log(`P2 Answer: ${oxygen*co2}`)
+console.timeEnd("P2");
+console.timeEnd("Program");
