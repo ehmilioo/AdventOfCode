@@ -1,24 +1,18 @@
 console.time("Program");
 const fs = require("fs");
-const read = fs.readFileSync("day6.txt").toString();
-const fishes = read.split(",").filter(line => line).map(num => +num);
-let counter = Array(9).fill(0); //Internal counter
+const fishes = fs.readFileSync("day6.txt").toString().split(",").filter(line => line).map(num => +num);
 
 function fishGrowth(days){
+  let counter = Array(9).fill(0); //Internal counter
   fishes.forEach(fish => counter[fish]++);
   for(let i = 0; i < days; i++){
-    let firstFish = counter[0];
-    counter.push(counter.shift());
+    let firstFish = counter.shift();
+    counter.push(firstFish);
     counter[6] += firstFish;
   }
   return counter.reduce((a, b) => a += b);
 }
 
-let p1 = fishGrowth(80);
-console.log(`P1 Answer: ${p1}`)
-
-counter = Array(9).fill(0);
-
-let p2 = fishGrowth(256);
-console.log(`P2 Answer: ${p2}`)
+console.log(`P1 Answer: ${fishGrowth(80)}`)
+console.log(`P2 Answer: ${fishGrowth(256)}`)
 console.timeEnd("Program");
